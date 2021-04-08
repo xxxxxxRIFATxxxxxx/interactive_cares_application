@@ -1,0 +1,171 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<!-- Carousel Section Start --> 
+<section>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <section class="banner row">
+                <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="text-box">
+                        <h2 class="banner-text">New<br>Dimension<br>of Learning<h2><br>
+                        <button type="button" class="btn btn-lg btn-outline-primary rounded-pill enroll-btn shadow-lg">Enroll Now <i class="fas fa-arrow-circle-right"></i></button>
+                    </div>
+                </section>
+            
+                <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="text-center">
+                        <img class="banner-img" src="{% static 'course_app/img/banner-1.png' %}" alt="man coding image">
+                    </div>
+                </section>
+            </section>
+          </div>
+
+          <div class="carousel-item">
+            <section class="banner row">
+                <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="text-box">
+                        <h2 class="banner-text">Most<br>Trending<br>Courses<h2><br>
+                        <button type="button" class="btn btn-lg btn-outline-primary rounded-pill enroll-btn shadow-lg">Enroll Now <i class="fas fa-arrow-circle-right"></i></button>
+                    </div>
+                </section>
+            
+                <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="text-center">
+                        <img class="banner-img" src="{% static 'course_app/img/banner-2.png' %}" alt="laptop and book image">
+                    </div>
+                </section>
+            </section>
+          </div>
+
+          <div class="carousel-item">
+            <section class="banner row">
+                <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="text-box">
+                        <h2 class="banner-text">Cloud & AI-<br>Based<br>Platform<h2><br>
+                        <button type="button" class="btn btn-lg btn-outline-primary rounded-pill enroll-btn shadow-lg">Enroll Now <i class="fas fa-arrow-circle-right"></i></button>
+                    </div>
+                </section>
+            
+                <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="text-center">
+                        <img class="banner-img" src="{% static 'course_app/img/banner-3.png' %}" alt="robot and girl image">
+                    </div>
+                </section>
+            </section>
+          </div>
+        </div>
+      </div>
+</section>
+<!-- Carousel Section End --> 
+
+<!-- About Us Start --> 
+<section class="container my-5" id="about">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h2 class="h-text">About Us</h2>
+            <p class="p-text my-3">Interactive Cares is Country’s first-ever cloud & AI-Based Platform for giving educational service to customers through real-time communication. People can directly chat, voice call, video call with the experts. Through this, experts can serve irrespective of locations & time.</p>
+
+            <button type="button" class="get-started-btn btn btn-info btn-lg my-3 me-3 p-3">Get Started</button>
+            <button type="button" class="btn btn-outline-primary btn-lg p-3">Sign Up Free</button>
+        </section>
+
+        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <img class="about-us-img" src="{% static 'course_app/img/about-us.png' %}" alt="man laptop and books picture">
+        </section>
+    </div>
+</section>
+<!-- About Us End -->
+
+<!-- Professional Instructors Start --> 
+<section class="container my-5">
+    <div class="row professional-instructors">
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <img class="about-us-img" src="{% static 'course_app/img/instructor.png' %}" alt="instructor image">
+        </div>
+
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">Professional Instructors</h2>
+            <p class="p-text my-3">Our skillful, experienced instructors are here to tech you with intensive care. We will ensure that our instructors are highly qualified. Join the team of professional instructors today!</p>
+
+            <button type="button" class="get-started-btn btn btn-info btn-lg my-3 me-3 p-3">Become Instructor</button>
+            <button type="button" class="btn btn-outline-primary btn-lg p-3">Contact Us</button>
+        </div>
+    </div>
+</section>
+<!-- Professional Instructors End --> 
+
+<!-- Most Trending Courses Start --> 
+<section class="container my-5">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <h2 class="h-text text-center mb-5">Most Trending Courses</h2>
+        <div class="row professional-instructors">
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <img class="course-img shadow mb-3" src="{% static 'course_app/img/Machine-Learning.png' %}" alt="student avatar">
+                <h2 class="course-text text-center ">Machine Learning</h2>
+                <p class="p-text my-3">ইমেইলের স্প্যাম ফোল্ডারটি দেখে কখনো অবাক হয়েছেন, এতো এতো মেইলের মাঝে স্প্যাম মেইলগুলো কিভাবে বাছাই করা হয়? মনে প্রশ্ন জেগেছে, সিরিকে কোনো গানের ভয়েস কমান্ড দিলে সেটা সাথেসাথে কিভাবে প্লে হয়?</p>
+                <address class="p-text ">by Masum Hasan</address>
+            </div>
+    
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <img class="course-img shadow mb-3" src="{% static 'course_app/img/Research-Methodology.png' %}" alt="student avatar">
+                <h2 class="course-text text-center ">Research Methodology</h2>
+                <p class="p-text my-3">যারা ইতিমধ্যেই গবেষণা শেষ করে ফেলেছেন বা শেষ করার পথে তারা একটি ভাল রিসার্চ পেপার কিভাবে লিখবেন, সেটা অবশ্যই জানেন। কিন্তু সমস্যা হল নতুনদেরকে নিয়ে, যারা গবেষনায় ঢুকবেন বা ঢোকার চেষ্টা করছেন।</p>
+                <address class="p-text ">by Dr. Nazrul Islam</address>
+            </div>
+    
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box">
+                <img class="course-img shadow mb-3" src="{% static 'course_app/img/python.png' %}" alt="student avatar">
+                <h2 class="course-text text-center">Python For Beginners</h2>
+                <p class="p-text my-3">বর্তমানে কলেজ ও বিশ্ববিদ্যালয়ের শিক্ষার্থীদের একটা মৌলিক স্কিল হিসেবে ধরা হয় প্রোগ্রামিং। আপনি যে বিষয়েই পড়ুন না কেন, একটু প্রোগ্রামিং শেখা আপনার ক্যারিয়ারের ট্র‍্যাক চেঞ্জ করে দিতে পারে।</p>
+                <address class="p-text ">by Tanvir Hossain Munim</address>
+            </div>
+
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box">
+                <img class="course-img shadow mb-3" src="{% static 'course_app/img/Masterclass.jpg' %}" alt="student avatar">
+                <h2 class="course-text text-center">Emotional Intelligence</h2>
+                <p class="p-text my-3">আমাদের বর্তমান তরুন প্রজন্ম সবচেয়ে বেশি যে সমস্যা টির সম্মুখীন হয় জীবনে তা হলো নিজের আবেগ নিয়ন্ত্রন করতে না পারা। ক্যারিয়ার, পরিবার, ব্যক্তিগত জীবন, হালফ্যাশনে নিজেকে আপডেট রাখা ইত্যাদি।</p>
+                <address class="p-text ">by Professor Moinuddin Chowdhury</address>
+            </div>
+        </div>
+    </div>    
+</section>
+<!-- Most Trending Courses End --> 
+
+<!-- Student Feedback Start --> 
+<section class="container my-5">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <h2 class="h-text text-center mb-5">Student Feedback</h2>
+        <div class="row professional-instructors">
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 student-box">
+                <img class="student-img" src="{% static 'course_app/img/student-avatar.png' %}" alt="student avatar">
+                <p class="p-text my-3">Our skillful, experienced instructors are here to tech you with intensive care. We will ensure that our instructors are highly qualified. Join the team of professional instructors today!</p>
+                <address class="p-text ">Written by Yasin Munna</address>
+            </div>
+    
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 student-box">
+                <img class="student-img" src="{% static 'course_app/img/student-avatar.png' %}" alt="student avatar">
+                <p class="p-text my-3">I was really tensed about the course but it came out so good. This site provide some skillful and quality based courses which is really appreciating. The instructors finely and elaborately described the topics.</p>
+                <address class="p-text ">Written by Ratri Jahan</address>
+            </div>
+    
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 student-box">
+                <img class="student-img" src="{% static 'course_app/img/student-avatar.png' %}" alt="student avatar">
+                <p class="p-text my-3">I am so happy that I choose this course. Really it was much easier to understand and the teaching method is so unique not like the traditional boring lecture that we receive in our school. I would recommended this. </p>
+                <address class="p-text ">Written by Abir Debnath</address>
+            </div>
+        </div>
+    </div>    
+</section>
+<!-- Student Feedback End --> 
+{% endblock %}
+
+

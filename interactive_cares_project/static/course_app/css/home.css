@@ -1,0 +1,103 @@
+/* Banner CSS Start */
+.banner {
+    background-image: linear-gradient(180deg, #18B3C7, blue);
+}
+
+.text-box {
+    width: 90%;
+    margin: auto;
+    padding-top: 60px;
+    padding-left: 90px;
+}
+
+.banner-text {
+    color: white;
+    font-weight: 600;
+    font-size: 68px; 
+    text-shadow: 6px 2px 15px #000000;
+}
+
+.banner-img {
+    width: 500px;
+}
+
+.enroll-btn {
+    color: white;
+    justify-self: start !important;
+}
+/* Banner CSS End */
+
+/* About Us CSS Start */
+.about-us-contaiiner {
+    border-radius: 50px !important;
+}
+
+.h-text {
+    font-size: 45px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+    text-shadow: 4px 4px 8px silver;
+}
+
+.p-text {
+    font-size: 15px;
+    color: rgb(127, 127, 127);
+    text-align: justify;
+}
+
+.about-us-img{
+    max-width: 100%;
+}
+
+.get-started-btn {
+    color: white;
+    background-image: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(24, 179, 199, 1)) !important;
+}
+/* About Us CSS End */
+
+/* Professional Instructors CSS Start  */
+.professional-instructors {
+    justify-content: space-between;
+}
+
+.professional-instructors-box {
+    width: 555px;
+}
+/* Professional Instructors CSS End */
+
+/* Most Trending Courses */
+.course-box {
+    width: 495px;
+}
+
+.course-img {
+    width: 100%;
+    border-radius: 50px;
+    border: 1px solid rgb(228, 225, 225);
+}
+
+.course-text {
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+    text-shadow: 4px 4px 8px silver;
+}
+/* Most Trending Courses */
+
+/* Student Feedback CSS Start */
+.student-img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.student-box {
+    width: 320px;
+}
+/* Student Feedback CSS End */
+
+/* Form CSS Start */
+.form {
+    width: 65%px;
+    border-radius: 50px;
+}
+/* Form CSS End */

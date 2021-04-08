@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% block body_block %}
+
+<section class="container my-5">
+    <div class="row professional-instructors">
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            {% if user.profile_picture %}
+            <img class="about-us-img course-img" src="/media/{{ user.profile_picture }}" alt="profile_picture">
+            {% else %}
+            <img class="about-us-img course-img" src="/media/auth_app/profile_pics/default_image.png" alt="default_profile_picture">
+            {% endif %}
+        </div>
+
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">Profile</h2>
+            <p class="p-text my-3">Email: {{ user.email }}</p>
+            <p class="p-text my-3">Username: {{ user.username }}</p>
+            <p class="p-text my-3">Full Name: {{ user.full_name }}</p>
+            <p class="p-text my-3">Username: {{ user.username }}</p>
+            <p class="p-text my-3">Contact: {{ user.phone_number }}</p>
+            <p class="p-text my-3">Bio: {{ user.bio }}</p>
+
+            <div class="d-grid gap-2">
+                <a class="btn btn-primary" href="{% url 'auth_app:edit_profile' %}" type="button">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

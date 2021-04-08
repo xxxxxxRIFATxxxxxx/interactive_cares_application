@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block body_block %}
+<section class="container my-5">
+  <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+      <h2 class="h-text text-center mb-5">My Courses</h2>
+      <div class="row professional-instructors">
+        {% for course in courses %}
+          <a href="{% url 'course_app:course_details' pk=course.pk %}" class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+            <img class="course-img shadow mb-3" src="/media/{{ course.thumbnail }}" alt="student avatar">
+            <h2 class="course-text text-center ">{{ course.title }}</h2>
+            <p class="p-text my-3 text-center">Price: {{ course.discounted_price }}</p>
+          </a>
+        {% endfor %}
+      </div>
+  </div>    
+</section>
+{% endblock %}

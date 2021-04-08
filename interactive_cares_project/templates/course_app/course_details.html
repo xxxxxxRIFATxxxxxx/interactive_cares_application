@@ -1,0 +1,139 @@
+{% extends 'base/base.html' %}
+{% block body_block %}
+
+<!-- Course Section -->
+<section class="container my-5" id="about">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h2 class="h-text">{{ current_course.title }}</h2>
+            <p class="p-text my-3">Published: {{ current_course.published_date }}</p>
+            <p class="p-text my-3">Updated: {{ current_course.updated_date }}</p>
+            <p class="p-text my-3">Price: {{ current_course.price }}</p>
+            <p class="p-text my-3">Discounted Price: {{ current_course.discounted_price }}</p>
+
+            {% if current_course.instructor == request.user.instructor_profile %}
+            <a class="btn btn-primary" href="{% url 'course_app:edit_course' pk=current_course.pk %}">Edit Course</a>
+            {% endif %}
+
+            {% if request.user.admin_profile %}
+            <a class="btn btn-primary" href="{% url 'course_app:edit_course_for_admin' pk=current_course.pk %}">Edit Course</a>
+            {% endif %}
+        </section>
+
+        <section class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <img class="about-us-img course-img " src="/media/{{ current_course.thumbnail }}" alt="{{ current_course.title }}">
+        </section>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="container my-5">
+    <div class="row professional-instructors">
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">About</h2>
+            <p class="p-text my-3">{{ current_course.description }}</p>
+        </div>
+
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <video class="about-us-img course-img" width="320" height="240" controls>
+                <source src="{{ current_course.intro_video_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</section>
+
+<!-- Instructor Section -->
+<section class="container my-5">
+    <div class="row professional-instructors">
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            {% if current_course.instructor.user.profile_picture %}
+            <img class="about-us-img course-img" src="/media/{{ current_course.instructor.user.profile_picture }}" alt="instructor image">
+            {% else %}
+            <img class="about-us-img course-img" src="/media/auth_app/profile_pics/default_image.png" alt="default_profile_picture">
+            {% endif %}
+        </div>
+
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">{{ current_course.instructor.user.full_name }}</h2>
+            <p class="p-text my-3">{{ current_course.instructor.user.bio }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Information Section -->
+<section class="container my-5">
+    <div class="row professional-instructors">
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">Information</h2>
+            <p class="p-text my-3">Category: {{ current_course.category }}</p>
+            <p class="p-text my-3">Language: {{ current_course.language }}</p>
+            <p class="p-text my-3">Difficulty Level: {{ current_course.difficulty_level }}</p>
+            <p class="p-text my-3">Course Type: {{ current_course.course_type }}</p>
+            <p class="p-text my-3">Course Duration: {{ current_course.total_course_duration }}</p>
+        </div>
+
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">Modules</h2>
+            <ol>
+            {% for module in modules %}
+                <a href="{% url 'course_app:module_details' pk=module.pk %}" target="_blank"><li>{{ module.module_name }}</li></a>
+            {% endfor %}
+            </ol>
+
+            {% if current_course.instructor == request.user.instructor_profile %}
+            <a class="btn btn-primary" href="{% url 'course_app:create_module' pk=current_course.pk %}">Create Module</a>
+            {% endif %}
+
+            {% if request.user.admin_profile %}
+            <a class="btn btn-primary" href="{% url 'course_app:create_module_for_admin' pk=current_course.pk %}">Create Module</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Requirements Section -->
+<section class="container my-5">
+    <div class="row professional-instructors">
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">Requirements</h2>
+            <p class="p-text my-3">{{ current_course.requirements }}</p>
+        </div>
+
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
+            <h2 class="h-text">Useful Links</h2>
+            <p class="p-text my-3">Support Group: {{ current_course.support_group_link }}</p>
+            <p class="p-text my-3">Material Files: {{ current_course.material_files_link }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Information Section -->
+<section class="container my-5">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <h2 class="h-text text-center mb-5">Additional Information</h2>
+        <div class="row professional-instructors">
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <h2 class="course-text text-center ">What Will I Learn</h2>
+                <p class="p-text my-3">{{ current_course.what_will_i_learn }}</p>
+            </div>
+
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <h2 class="course-text text-center ">Target Audience</h2>
+                <p class="p-text my-3">{{ current_course.target_audience }}</p>
+            </div>
+
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <h2 class="course-text text-center ">Material Includes</h2>
+                <p class="p-text my-3">{{ current_course.material_includes }}</p>
+            </div>
+
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <h2 class="course-text text-center ">Outcome</h2>
+                <p class="p-text my-3">{{ current_course.outcome }}</p>
+            </div>
+        </div>
+    </div>    
+</section>
+
+{% endblock %}
