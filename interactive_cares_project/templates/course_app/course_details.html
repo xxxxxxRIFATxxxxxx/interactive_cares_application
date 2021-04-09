@@ -34,11 +34,8 @@
             <p class="p-text my-3">{{ current_course.description }}</p>
         </div>
 
-        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box">
-            <video class="about-us-img course-img" width="320" height="240" controls>
-                <source src="{{ current_course.intro_video_url }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 professional-instructors-box text-center">
+            <iframe src="{{ current_course.intro_video_embed_src_link }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ current_course.title }}"></iframe>
         </div>
     </div>
 </section>

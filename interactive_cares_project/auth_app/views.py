@@ -40,7 +40,7 @@ def student_signup(request):
         return render(request, 'auth_app/signup.html', context=diction)
 
 # Instructor signup
-def instructor_signup(request):
+def pending_instructor_signup(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse("course_app:home"))
     else:   
@@ -52,7 +52,7 @@ def instructor_signup(request):
 
             if form.is_valid():
                 user = form.save()
-                instructor_profile = models.Instructor(user=user)
+                instructor_profile = models.Pending_Instructor(user=user)
                 instructor_profile.save()
                 return HttpResponseRedirect(reverse("auth_app:login"))
     

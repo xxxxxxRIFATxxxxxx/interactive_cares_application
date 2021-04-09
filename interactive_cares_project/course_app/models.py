@@ -25,10 +25,10 @@ class Course(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     thumbnail = models.ImageField(upload_to=thumbnail_upload)
-    intro_video_url = models.CharField(max_length=99999)
-    support_group_link = models.CharField(max_length=99999, blank=True, null=True)
+    intro_video_embed_src_link = models.TextField()
+    support_group_link = models.TextField(blank=True, null=True)
     requirements = models.TextField(blank=True, null=True)
-    material_files_link = models.CharField(max_length=99999, blank=True, null=True)
+    material_files_link = models.TextField(blank=True, null=True)
     language = models.CharField(max_length=255, blank=True, null=True)
 
     difficulty_level_choices = (
@@ -74,7 +74,7 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     lesson_name = models.CharField(max_length=255)
-    video_url = models.CharField(max_length=99999)
+    video_embed_src_link = models.TextField()
     duration = models.CharField(max_length=255, default="00:00:00")
     privacy_type_choices = (
         ('Private', 'Private'),

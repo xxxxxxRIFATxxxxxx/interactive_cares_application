@@ -5,7 +5,7 @@ app_name = "auth_app"
 
 urlpatterns = [
     path("student_signup/", views.student_signup, name="student_signup"),
-    path("instructor_signup/", views.instructor_signup, name="instructor_signup"),
+    path("pending_instructor_signup/", views.pending_instructor_signup, name="pending_instructor_signup"),
     path("admin_signup/", views.admin_signup, name="admin_signup"),
     path("csagent_signup/", views.csagent_signup, name="csagent_signup"),
     path("login/", views.login_view, name="login"),

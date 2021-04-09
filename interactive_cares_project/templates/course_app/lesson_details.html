@@ -8,10 +8,7 @@
         <h2 class="h-text text-center mb-5">{{ lesson.lesson_name }}</h2>
         <div class="row professional-instructors">
             <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 course-box mb-4" style="margin: auto;">
-                <video width="100%" height="240" controls>
-                    <source src="{{ lesson.video_url }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <iframe src="{{ lesson.video_embed_src_link }}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ lesson.lesson_name }}"></iframe>
             </div>
         </div>
     </div>    

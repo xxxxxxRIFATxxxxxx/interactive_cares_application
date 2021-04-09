@@ -108,9 +108,15 @@
                     <a class="nav-link" href="{%url 'auth_app:login' %}">Login</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{%url 'auth_app:student_signup' %}">Signup</a>
-                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Signup
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="{%url 'auth_app:student_signup' %}">Student</a></li>
+                      <li><a class="dropdown-item" href="{%url 'auth_app:pending_instructor_signup' %}">Instructor</a></li>
+                    </ul>
+                  </li>
                 {% endif %}
               </ul>
 
