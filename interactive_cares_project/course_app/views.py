@@ -99,12 +99,14 @@ def my_courses(request):
 def module_details(request, pk):
     current_module = models.Module.objects.get(pk=pk)
     lessons = models.Lesson.objects.filter(module=current_module)
+    quizes = models.Quiz.objects.filter(module=current_module)
 
     diction = {
         "title": f"{current_module.module_name} - Interactive Cares",
         "current_module": current_module,
         "lessons": lessons,
-        "current_module": current_module
+        "current_module": current_module,
+        "quizes": quizes
     }
     return render(request, "course_app/module_details.html", context=diction)
 
@@ -203,6 +205,17 @@ def edit_lesson(request, pk):
         "form": form
     }
     return render(request, "course_app/edit_lesson.html", context=diction)
+
+# Quiz details
+def quiz_details(request, pk):
+    current_quiz = models.Quiz.objects.get(pk=pk)
+    questions = models.Question.objects.filter(quiz=current_quiz)
+
+    diction = {
+        "title": f"{current_quiz.quiz_name} - Interactive Cares",
+        "questions": questions
+    }
+    return render(request, "course_app/quiz_details.html", context=diction)
 
 
 # For Admin User View

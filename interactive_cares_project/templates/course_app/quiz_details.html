@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+<!-- Question List Section -->
+<section class="container my-5">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <h2 class="h-text text-center mb-5">Questions</h2>
+        <div class="row professional-instructors">
+            {% for question in questions %}
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <table>
+                    <tr>
+                        <td class="text-primary">{{question.pk}} ) {{question.question}} ?</td>
+                    </tr>
+    
+                    <tr>
+                        <td><input type = "radio" class="rb" name = {{question.pk}} id="Option1" value="{{question.option_1}}" style="cursor: pointer;"> {{question.option_1}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td><input type = "radio" class="rb" name = {{question.pk}} id="Option2" value="{{question.option_2}}" style="cursor: pointer;"> {{question.option_2}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td><input type = "radio" class="rb" name = {{question.pk}} id="Option3" value="{{question.option_3}}" style="cursor: pointer;"> {{question.option_3}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td><input type = "radio" class="rb" name = {{question.pk}} id="Option4" value="{{question.option_4}}" style="cursor: pointer;"> {{question.option_4}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td><label id="corans" class= "rb" style="display:none ; color : green"><b>Correct answer: {{question.answer}}</b></label></td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+
+            <input type="submit" class="btn btn-success" value="Submit" id="b1">
+            <hr>
+            <input type="submit" class="btn btn-danger" value="Reset" id="reset-btn">
+        </div>
+    </div>    
+</section>
+{% endblock %}

@@ -6,4 +6,6 @@ admin.site.register(models.Category)
 admin.site.register(models.Course)
 admin.site.register(models.Module)
 admin.site.register(models.Lesson)
+admin.site.register(models.Quiz)
+admin.site.register(models.Question)
 

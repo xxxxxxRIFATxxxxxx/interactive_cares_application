@@ -86,5 +86,30 @@ class Lesson(models.Model):
     def __str__(self):
         return f"Lesson name: {self.lesson_name}, Module: {self.module.module_name}, Course: {self.course.title}"
 
+class Quiz(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    quiz_name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'Quizes'
+
+    def __str__(self):
+        return f"Quiz name: {self.quiz_name}, Module: {self.module.module_name}, Course: {self.course.title}"
+
+class Question(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    question = models.TextField()
+    option_1 = models.TextField(blank=True, null=True)
+    option_2 = models.TextField(blank=True, null=True)
+    option_3 = models.TextField(blank=True, null=True)
+    option_4 = models.TextField(blank=True, null=True)
+    answer = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Question: {self.question} Quiz name: {self.quiz.quiz_name}, Module: {self.module.module_name}, Course: {self.course.title}"
+
 
    

@@ -16,6 +16,20 @@
     </div>    
 </section>
 
+<!-- Quiz List Section -->
+<section class="container my-5">
+    <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+        <h2 class="h-text text-center mb-5">Quizes</h2>
+        <div class="row professional-instructors">
+            {% for quiz in quizes %}
+            <div class="shadow-lg p-5 my-2 bg-body rounded about-us-contaiiner col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 course-box mb-4">
+                <h2 class="course-text text-center "><a href="{% url 'course_app:quiz_details' pk=quiz.pk %}" target="_blank">{{ quiz.quiz_name }}</a></h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>    
+</section>
+
 <!-- Edit and Create Section -->
 {% if current_module.course.instructor == request.user.instructor_profile %}
 <section class="container my-5 text-center">
