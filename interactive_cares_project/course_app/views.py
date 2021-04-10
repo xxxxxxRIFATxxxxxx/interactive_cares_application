@@ -185,6 +185,7 @@ def create_lesson(request, pk):
     return render(request, "course_app/create_lesson.html", context=diction)
 
 # Edit Lesson
+@login_required
 def edit_lesson(request, pk):
     current_lesson = models.Lesson.objects.get(pk=pk)
     form = forms.CreateLessonForm(instance=current_lesson)
@@ -207,16 +208,58 @@ def edit_lesson(request, pk):
     return render(request, "course_app/edit_lesson.html", context=diction)
 
 # Quiz details
+@login_required
 def quiz_details(request, pk):
     current_quiz = models.Quiz.objects.get(pk=pk)
     questions = models.Question.objects.filter(quiz=current_quiz)
 
     diction = {
         "title": f"{current_quiz.quiz_name} - Interactive Cares",
-        "questions": questions
+        "questions": questions,
+        "current_quiz": current_quiz
     }
     return render(request, "course_app/quiz_details.html", context=diction)
 
+# Create Quiz
+@login_required
+def create_quiz(request, pk):
+    current_module = models.Module.objects.get(pk=pk)
+    form = forms.CreateQuizForm()
+
+    if request.method == "POST":
+        form = forms.CreateQuizForm(request.POST)
+
+        if form.is_valid():
+            quiz_obj = form.save(commit=False) 
+            quiz_obj.course = current_module.course
+            quiz_obj.module = current_module
+            quiz_obj.save()
+            return HttpResponseRedirect(reverse("course_app:module_details", kwargs={"pk":pk}))
+
+    diction = {
+        "title": "Create Quiz - Interactive Cares",
+        "form": form
+    }
+    return render(request, "course_app/create_quiz.html", context=diction)
+
+# Edit Quiz
+@login_required
+def edit_quiz(request, pk):
+    current_quiz = models.Quiz.objects.get(pk=pk)
+    form = forms.CreateQuizForm(instance=current_quiz)
+
+    if request.method == "POST":
+        form = forms.CreateQuizForm(request.POST, instance=current_quiz)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("course_app:quiz_details", kwargs={"pk":pk}))
+
+    diction = {
+        "title": "Edit Quiz - Interactive Cares",
+        "form": form
+    }
+    return render(request, "course_app/edit_quiz.html", context=diction)
 
 # For Admin User View
 

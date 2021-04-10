@@ -18,6 +18,16 @@ class CreateLessonForm(forms.ModelForm):
         model = models.Lesson
         exclude = ("course", "module")
 
+class CreateQuizForm(forms.ModelForm):
+    class Meta:
+        model = models.Quiz
+        exclude = ("course", "module")
+
+class CreateQuestionForm(forms.ModelForm):
+    class Meta:
+        model = models.Question
+        exclude = ("course", "module", "quiz")
+
 
 # For Admin User
 class CreateCategoryFormForAdmin(forms.ModelForm):
@@ -38,5 +48,15 @@ class CreateModuleFormForAdmin(forms.ModelForm):
 class CreateLessonFormForAdmin(forms.ModelForm):
     class Meta:
         model = models.Lesson
+        fields = "__all__"
+
+class CreateQuizFormForAdmin(forms.ModelForm):
+    class Meta:
+        model = models.Quiz
+        fields = "__all__"
+
+class CreateQuestionFormForAdmin(forms.ModelForm):
+    class Meta:
+        model = models.Question
         fields = "__all__"
 

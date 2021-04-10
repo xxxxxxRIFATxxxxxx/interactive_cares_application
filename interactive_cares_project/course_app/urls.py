@@ -26,6 +26,8 @@ urlpatterns = [
 
     # Quiz related URL
     path("quiz_details/<pk>/", views.quiz_details, name="quiz_details"),
+    path("create_quiz/<pk>/", views.create_quiz, name="create_quiz"),
+    path("edit_quiz/<pk>/", views.edit_quiz, name="edit_quiz"),
 
     # For admin user
     path("create_category_for_admin/", views.create_category_for_admin, name="create_category_for_admin"),
