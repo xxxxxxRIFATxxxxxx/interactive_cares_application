@@ -83,7 +83,7 @@
             {% endif %}
 
             {% if request.user.admin_profile %}
-            <a class="btn btn-primary" href="{% url 'course_app:create_module_for_admin' pk=current_course.pk %}">Create Module</a>
+            <a class="btn btn-primary" href="{% url 'course_app:create_module' pk=current_course.pk %}">Create Module</a>
             {% endif %}
         </div>
     </div>

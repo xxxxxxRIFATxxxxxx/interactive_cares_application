@@ -12,7 +12,6 @@ from course_app import forms
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
 # Homepage
 def home(request):
     diction = {
@@ -28,7 +27,7 @@ def courses(request):
         "title": "Courses - Interactive Cares",
         "courses": courses
     }
-    return render(request, "course_app/courses.html", context=diction)
+    return render(request, "course_app/course/courses.html", context=diction)
 
 # Course details
 def course_details(request, pk):
@@ -40,7 +39,7 @@ def course_details(request, pk):
         "current_course": current_course,
         "modules": modules
     }
-    return render(request, "course_app/course_details.html", context=diction)
+    return render(request, "course_app/course/course_details.html", context=diction)
     
 # Create course
 @login_required
@@ -62,7 +61,7 @@ def create_course(request):
         "form": form,
         "created": created
     }
-    return render(request, "course_app/create_course.html", context=diction) 
+    return render(request, "course_app/course/create_course.html", context=diction) 
 
 # Edit course
 @login_required
@@ -83,7 +82,7 @@ def edit_course(request, pk):
         "title": "Edit Course - Interactive Cares",
         "form": form,
     }
-    return render(request, "course_app/edit_course.html", context=diction) 
+    return render(request, "course_app/course/edit_course.html", context=diction) 
 
 # My course
 @login_required
@@ -93,7 +92,7 @@ def my_courses(request):
         "title": "My Course - Interactive Cares",
         "courses": courses
     }
-    return render(request, "course_app/my_courses.html", context=diction)            
+    return render(request, "course_app/course/my_courses.html", context=diction)            
 
 # Module details
 def module_details(request, pk):
@@ -108,7 +107,7 @@ def module_details(request, pk):
         "current_module": current_module,
         "quizes": quizes
     }
-    return render(request, "course_app/module_details.html", context=diction)
+    return render(request, "course_app/module/module_details.html", context=diction)
 
 # Create Module
 @login_required
@@ -129,7 +128,7 @@ def create_module(request, pk):
         "title": "Create Module - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/create_module.html", context=diction)
+    return render(request, "course_app/module/create_module.html", context=diction)
 
 # Edit Module
 @login_required
@@ -148,7 +147,7 @@ def edit_module(request, pk):
         "title": "Edit Module - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/edit_module.html", context=diction)
+    return render(request, "course_app/module/edit_module.html", context=diction)
 
 
 # Lesson details
@@ -159,7 +158,7 @@ def lesson_details(request, pk):
         "title": f"{lesson.lesson_name} - Interactive Cares",
         "lesson": lesson
     }
-    return render(request, "course_app/lesson_details.html", context=diction)
+    return render(request, "course_app/lesson/lesson_details.html", context=diction)
 
 # Create Lesson
 @login_required
@@ -182,7 +181,7 @@ def create_lesson(request, pk):
         "title": "Create Lesson - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/create_lesson.html", context=diction)
+    return render(request, "course_app/lesson/create_lesson.html", context=diction)
 
 # Edit Lesson
 @login_required
@@ -194,10 +193,7 @@ def edit_lesson(request, pk):
         form = forms.CreateLessonForm(request.POST, instance=current_lesson)
 
         if form.is_valid():
-            lesson_obj = form.save(commit=False) 
-            lesson_obj.course = current_lesson.course
-            lesson_obj.module = current_lesson.module
-            lesson_obj.save()
+            form.save()
             return HttpResponseRedirect(reverse("course_app:lesson_details", kwargs={"pk":pk}))
 
 
@@ -205,7 +201,7 @@ def edit_lesson(request, pk):
         "title": "Edit Lesson - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/edit_lesson.html", context=diction)
+    return render(request, "course_app/lesson/edit_lesson.html", context=diction)
 
 # Quiz details
 @login_required
@@ -218,7 +214,7 @@ def quiz_details(request, pk):
         "questions": questions,
         "current_quiz": current_quiz
     }
-    return render(request, "course_app/quiz_details.html", context=diction)
+    return render(request, "course_app/quiz/quiz_details.html", context=diction)
 
 # Create Quiz
 @login_required
@@ -240,7 +236,7 @@ def create_quiz(request, pk):
         "title": "Create Quiz - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/create_quiz.html", context=diction)
+    return render(request, "course_app/quiz/create_quiz.html", context=diction)
 
 # Edit Quiz
 @login_required
@@ -259,7 +255,7 @@ def edit_quiz(request, pk):
         "title": "Edit Quiz - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/edit_quiz.html", context=diction)
+    return render(request, "course_app/quiz/edit_quiz.html", context=diction)
 
 # Create Question
 @login_required
@@ -282,7 +278,7 @@ def create_question(request, pk):
         "title": "Create Question - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/create_question.html", context=diction)
+    return render(request, "course_app/question/create_question.html", context=diction)
 
 # Edit Question
 @login_required
@@ -301,10 +297,9 @@ def edit_question(request, pk):
         "title": "Edit Question - Interactive Cares",
         "form": form
     }
-    return render(request, "course_app/edit_question.html", context=diction)
+    return render(request, "course_app/question/edit_question.html", context=diction)
 
 # For Admin User View
-
 # Admin User Create Category
 @login_required
 def create_category_for_admin(request):
@@ -323,7 +318,7 @@ def create_category_for_admin(request):
         "form": form,
         "created": created
     }
-    return render(request, "course_app/create_category.html", context=diction) 
+    return render(request, "course_app/category/create_category.html", context=diction) 
 
 # Admin User Edit Category
 @login_required
@@ -342,7 +337,7 @@ def edit_category_for_admin(request, pk):
         "title": "Edit Category - Interactive Cares",
         "form": form,
     }
-    return render(request, "course_app/edit_category.html", context=diction) 
+    return render(request, "course_app/category/edit_category.html", context=diction) 
 
 # Admin User Category List
 @login_required
@@ -353,7 +348,7 @@ def category_list(request):
         "title": "Category List - Interactive Cares",
         "category_list": category_list
     }
-    return render(request, "course_app/category_list.html", context=diction) 
+    return render(request, "course_app/category/category_list.html", context=diction) 
 
 
 # Admin User Create Course
@@ -374,7 +369,7 @@ def create_course_for_admin(request):
         "form": form,
         "created": created
     }
-    return render(request, "course_app/create_course.html", context=diction) 
+    return render(request, "course_app/course/create_course.html", context=diction) 
 
 # Admin User Edit Course
 @login_required
@@ -393,81 +388,4 @@ def edit_course_for_admin(request, pk):
         "title": "Edit Course - Interactive Cares",
         "form": form,
     }
-    return render(request, "course_app/edit_course.html", context=diction) 
-
-# Admin User Create Module
-@login_required
-def create_module_for_admin(request, pk):
-    current_course = models.Course.objects.get(pk=pk)
-    form = forms.CreateModuleFormForAdmin()
-
-    if request.method == "POST":
-        form = forms.CreateModuleFormForAdmin(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse("course_app:course_details", kwargs={"pk":pk}))
-
-    diction = {
-        "title": "Create Module - Interactive Cares",
-        "form": form
-    }
-    return render(request, "course_app/create_module.html", context=diction)
-
-# Admin User Edit Module
-@login_required
-def edit_module_for_admin(request, pk):
-    current_module = models.Module.objects.get(pk=pk)
-    form = forms.CreateModuleFormForAdmin(instance=current_module)
-
-    if request.method == "POST":
-        form = forms.CreateModuleFormForAdmin(request.POST, instance=current_module)
-
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse("course_app:module_details", kwargs={"pk":pk}))
-
-    diction = {
-        "title": "Edit Module - Interactive Cares",
-        "form": form
-    }
-    return render(request, "course_app/edit_module.html", context=diction)
-
-# Admin User Create Lesson
-@login_required
-def create_lesson_for_admin(request, pk):
-    current_module = models.Module.objects.get(pk=pk)
-    form = forms.CreateLessonFormForAdmin()
-
-    if request.method == "POST":
-        form = forms.CreateLessonFormForAdmin(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse("course_app:module_details", kwargs={"pk":pk}))
-
-
-    diction = {
-        "title": "Create Lesson - Interactive Cares",
-        "form": form
-    }
-    return render(request, "course_app/create_lesson.html", context=diction)
-
-# Admin User Edit Lesson 
-def edit_lesson_for_admin(request, pk):
-    current_lesson = models.Lesson.objects.get(pk=pk)
-    form = forms.CreateLessonFormForAdmin(instance=current_lesson)
-
-    if request.method == "POST":
-        form = forms.CreateLessonFormForAdmin(request.POST, instance=current_lesson)
-
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse("course_app:lesson_details", kwargs={"pk":pk}))
-
-
-    diction = {
-        "title": "Edit Lesson - Interactive Cares",
-        "form": form
-    }
-    return render(request, "course_app/edit_lesson.html", context=diction)
+    return render(request, "course_app/course/edit_course.html", context=diction)

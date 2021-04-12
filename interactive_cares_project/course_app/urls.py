@@ -37,8 +37,4 @@ urlpatterns = [
     path("category_list/", views.category_list, name="category_list"),
     path("create_course_for_admin/", views.create_course_for_admin, name="create_course_for_admin"),
     path("edit_course_for_admin/<pk>/", views.edit_course_for_admin, name="edit_course_for_admin"),
-    path("create_module_for_admin/<pk>/", views.create_module_for_admin, name="create_module_for_admin"),
-    path("edit_module_for_admin/<pk>/", views.edit_module_for_admin, name="edit_module_for_admin"),
-    path("create_lesson_for_admin/<pk>/", views.create_lesson_for_admin, name="create_lesson_for_admin"),
-    path("edit_lesson_for_admin/<pk>/", views.edit_lesson_for_admin, name="edit_lesson_for_admin"),
 ]
