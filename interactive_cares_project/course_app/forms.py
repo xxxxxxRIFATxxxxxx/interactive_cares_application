@@ -50,13 +50,3 @@ class CreateLessonFormForAdmin(forms.ModelForm):
         model = models.Lesson
         fields = "__all__"
 
-class CreateQuizFormForAdmin(forms.ModelForm):
-    class Meta:
-        model = models.Quiz
-        fields = "__all__"
-
-class CreateQuestionFormForAdmin(forms.ModelForm):
-    class Meta:
-        model = models.Question
-        fields = "__all__"
-

@@ -4,7 +4,7 @@
 
 <section class="container my-5 shadow-lg p-5 form">
     <form method="POST" enctype="multipart/form-data">
-        <h2 class="h-text text-center mb-5">Create Quiz</h2>
+        <h2 class="h-text text-center mb-5">Create Question</h2>
         {{ form|crispy }}
         {% csrf_token %}
         <div class="d-grid gap-2 mt-4">

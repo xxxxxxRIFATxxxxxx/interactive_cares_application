@@ -261,6 +261,48 @@ def edit_quiz(request, pk):
     }
     return render(request, "course_app/edit_quiz.html", context=diction)
 
+# Create Question
+@login_required
+def create_question(request, pk):
+    current_quiz = models.Quiz.objects.get(pk=pk)
+    form = forms.CreateQuestionForm()
+
+    if request.method == "POST":
+        form = forms.CreateQuestionForm(request.POST)
+
+        if form.is_valid():
+            question_obj = form.save(commit=False) 
+            question_obj.course = current_quiz.course
+            question_obj.module = current_quiz.module
+            question_obj.quiz = current_quiz
+            question_obj.save()
+            return HttpResponseRedirect(reverse("course_app:quiz_details", kwargs={"pk":pk}))
+
+    diction = {
+        "title": "Create Question - Interactive Cares",
+        "form": form
+    }
+    return render(request, "course_app/create_question.html", context=diction)
+
+# Edit Question
+@login_required
+def edit_question(request, pk):
+    current_question = models.Question.objects.get(pk=pk)
+    form = forms.CreateQuestionForm(instance=current_question)
+
+    if request.method == "POST":
+        form = forms.CreateQuestionForm(request.POST, instance=current_question)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("course_app:quiz_details", kwargs={"pk": current_question.quiz.pk}))
+
+    diction = {
+        "title": "Edit Question - Interactive Cares",
+        "form": form
+    }
+    return render(request, "course_app/edit_question.html", context=diction)
+
 # For Admin User View
 
 # Admin User Create Category
