@@ -1,5 +1,5 @@
 from django.db import models
-from auth_app.models import Instructor
+from auth_app.models import Instructor, Student
 
 # To keep each course thumbnail in a different folder
 def thumbnail_upload(instance, filename):
@@ -52,6 +52,7 @@ class Course(models.Model):
     discounted_price = models.FloatField(blank=True, null=True)
 
     # Additional info
+    outline = models.TextField(blank=True, null=True)
     what_will_i_learn = models.TextField(blank=True, null=True)
     target_audience = models.TextField(blank=True, null=True)
     material_includes = models.TextField(blank=True, null=True)
@@ -111,5 +112,17 @@ class Question(models.Model):
     def __str__(self):
         return f"Question: {self.question} Quiz name: {self.quiz.quiz_name}, Module: {self.module.module_name}, Course: {self.course.title}"
 
+class Enrollment(models.Model):
+    date_and_time = models.DateTimeField(auto_now_add=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    enrollment_status_choices = (
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+        ('Pending', 'Pending'),
+    )
 
-   
+    enrollment_status = models.CharField(max_length=255, choices=enrollment_status_choices)
+    
+    def __str__(self):
+        return f"Student: {self.student.user.email}, Course: {self.course.title}, Enrollment Status: {self.enrollment_status}"
