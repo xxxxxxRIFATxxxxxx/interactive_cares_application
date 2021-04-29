@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <!-- Font-awesome JS -->
     <script src="https://kit.fontawesome.com/f335a4ce99.js" crossorigin="anonymous"></script>
@@ -28,236 +29,264 @@
     <!-- Header Section Start -->
     <header>
         <section class="container">
-          <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="{% url 'course_app:home' %}"><img class="navbar-logo" src="{% static 'base/img/IC-logo-Telda.png' %}" alt="IC Logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{%url 'course_app:home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{%url 'course_app:courses' %}">Courses</a>
-                </li>
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Category
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Python</a></li>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="{% url 'course_app:home' %}"><img class="navbar-logo"
+                        src="{% static 'base/img/IC-logo-Telda.png' %}" alt="IC Logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'course_app:home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'course_app:courses' %}">Courses</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Python</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#about">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blogs</a>
+                        </li>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'auth_app:profile' %}">Profile</a>
+                                </li>
+
+                                {% if request.user.instructor_profile %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'course_app:create_course' %}">Create
+                                        Course</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'course_app:my_courses' %}">My Courses</a>
+                                </li>
+                                {% endif %}
+
+                                {% if request.user.admin_profile %}
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{% url 'course_app:create_course_for_admin' %}">Create Course</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{% url 'course_app:create_category_for_admin' %}">Create Category</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'course_app:category_list' %}">Create List</a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{% url 'course_app:generate_certificate_for_admin' %}">Generate
+                                        Certificate</a>
+                                </li>
+                                {% endif %}
+
+                                <div class="dropdown-divider"></div>
+
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'auth_app:logout' %}">Logout</a>
+                                </li>
+                            </ul>
+
+                            {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'auth_app:login' %}">Login</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Signup
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{%url 'auth_app:student_signup' %}">Student</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{%url 'auth_app:pending_instructor_signup' %}">Instructor</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
                     </ul>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/#about">About</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blogs</a>
-                </li>
-
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ user.username }}
-                  </a>
-
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                      <a class="dropdown-item" href="{% url 'auth_app:profile' %}">Profile</a>
-                    </li>
-
-                    {% if request.user.instructor_profile %}
-                    <li>
-                        <a class="dropdown-item" href="{% url 'course_app:create_course' %}">Create Course</a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{% url 'course_app:my_courses' %}">My Courses</a>
-                    </li>
-                    {% endif %}
-
-                    {% if request.user.admin_profile %}
-                    <li>
-                        <a class="dropdown-item" href="{% url 'course_app:create_course_for_admin' %}">Create Course</a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{% url 'course_app:create_category_for_admin' %}">Create Category</a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{% url 'course_app:category_list' %}">Create List</a>
-                    </li>
-                    {% endif %}
-
-                    <div class="dropdown-divider"></div>
-                    
-                    <li>
-                      <a class="dropdown-item" href="{% url 'auth_app:logout' %}">Logout</a>
-                    </li>
-                  </ul>
-
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{%url 'auth_app:login' %}">Login</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Signup
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="{%url 'auth_app:student_signup' %}">Student</a></li>
-                      <li><a class="dropdown-item" href="{%url 'auth_app:pending_instructor_signup' %}">Instructor</a></li>
-                    </ul>
-                  </li>
-                {% endif %}
-              </ul>
-
-              <form class="d-flex">
-                <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary rounded-pill search-submit" type="submit">Search</button>
-              </form>
-            </div>
-          </nav>
+                    <form class="d-flex">
+                        <input class="form-control me-2 search-input" type="search" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-primary rounded-pill search-submit" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
         </section>
-    </header>  
+    </header>
     <!-- Header Section End -->
-    
+
     <!-- Main Section Start -->
     <main>
-      {% block body_block %}
-      {% endblock %}
+        {% block body_block %}
+        {% endblock %}
     </main>
     <!-- Main Section End -->
 
     <!-- Footer Section Start -->
     <footer class="footer-section" id=contact>
-      <div class="container">
-          <div class="footer-cta pt-5 pb-5">
-              <div class="row">
-                  <div class="col-xl-4 col-md-4 mb-30">
-                      <div class="single-cta">
-                          <i class="fas fa-map-marker-alt"></i>
-                          <div class="cta-text">
-                              <h4>Find us</h4>
-                              <span>46 Science Laboratory, Dhaka-1205</span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-xl-4 col-md-4 mb-30">
-                      <div class="single-cta">
-                          <i class="fas fa-phone"></i>
-                          <div class="cta-text">
-                              <h4>Call us</h4>
-                              <span>01727659043</span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-xl-4 col-md-4 mb-30">
-                      <div class="single-cta">
-                          <i class="far fa-envelope-open"></i>
-                          <div class="cta-text">
-                              <h4>Mail us</h4>
-                              <span>support@interactivecares-courses.com</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="footer-content pt-5 pb-5">
-              <div class="row">
-                  <div class="col-xl-4 col-lg-4 mb-50">
-                      <div class="footer-widget">
-                          <div class="footer-logo">
-                              <a href="index.html"><img src="{% static 'base/img/IC-logo-Telda.png' %}" class="img-fluid" alt="logo"></a>
-                          </div>
-                          <div class="footer-text">
-                              <p>Interactive Cares is Country’s first ever cloud & AI based virtual platform for providing academic, career & skill development, cultural flourishment through events, campaigns, courses, masterclasses and real-time communication.</p>
-                          </div>
-                          <div class="footer-social-icon">
-                              <span>Follow us</span>
-                              <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                              <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                              <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                      <div class="footer-widget">
-                          <div class="footer-widget-heading">
-                              <h3>Useful Links</h3>
-                          </div>
-                          <ul>
-                              <li><a href="#">Home</a></li>
-                              <li><a href="#">about</a></li>
-                              <li><a href="#">services</a></li>
-                              <li><a href="#">portfolio</a></li>
-                              <li><a href="#">Contact</a></li>
-                              <li><a href="#">About us</a></li>
-                              <li><a href="#">Our Services</a></li>
-                              <li><a href="#">Expert Team</a></li>
-                              <li><a href="#">Contact us</a></li>
-                              <li><a href="#">Latest News</a></li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                      <div class="footer-widget">
-                          <div class="footer-widget-heading">
-                              <h3>Subscribe</h3>
-                          </div>
-                          <div class="footer-text mb-25">
-                              <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                          </div>
-                          <div class="subscribe-form">
-                              <form action="#">
-                                  <input type="text" placeholder="Email Address">
-                                  <button><i class="fab fa-telegram-plane"></i></button>
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="copyright-area">
-          <div class="container">
-              <div class="row">
-                  <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                      <div class="copyright-text">
-                          <p>Copyright &copy; 2021, All Right Reserved <a href="#">Interactive Cares</a></p>
-                      </div>
-                  </div>
-                  <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                      <div class="footer-menu">
-                          <ul>
-                              <li><a href="#">Home</a></li>
-                              <li><a href="#">Terms</a></li>
-                              <li><a href="#">Privacy</a></li>
-                              <li><a href="#">Policy</a></li>
-                              <li><a href="#">Contact</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Find us</h4>
+                                <span>46 Science Laboratory, Dhaka-1205</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>01727659043</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span>support@interactivecares-courses.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="{% static 'base/img/IC-logo-Telda.png' %}"
+                                        class="img-fluid" alt="logo"></a>
+                            </div>
+                            <div class="footer-text">
+                                <p>Interactive Cares is Country’s first ever cloud & AI based virtual platform for
+                                    providing academic, career & skill development, cultural flourishment through
+                                    events, campaigns, courses, masterclasses and real-time communication.</p>
+                            </div>
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">about</a></li>
+                                <li><a href="#">services</a></li>
+                                <li><a href="#">portfolio</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">Expert Team</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Latest News</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Subscribe</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                            </div>
+                            <div class="subscribe-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Email Address">
+                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2021, All Right Reserved <a href="#">Interactive Cares</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Policy</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     <!-- Footer Section End -->
-    
+
     <!-- Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous"></script>
+
+    <!-- JS PDF -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
 
     <!-- Custom Quiz JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'course_app/js/quiz.js' %}"></script>
-  </body>
+    <script src="{% static 'course_app/js/certificate.js' %}"></script>
+</body>
+
 </html>

@@ -389,3 +389,17 @@ def edit_course_for_admin(request, pk):
         "form": form,
     }
     return render(request, "course_app/course/edit_course.html", context=diction)
+
+# Admin User Generate Certificate
+@login_required
+def generate_certificate_for_admin(request):
+    student = models.Student.objects.get(pk=1)
+    enrollment = models.Enrollment.objects.get(student=student)
+    certificate = models.Certificate.objects.get(pk=1)
+    diction = {
+        "title": "Generate Certifiate - Interactive Cares",
+        "student": student,
+        "enrollment": enrollment,
+        "certificate": certificate
+    }
+    return render(request, "course_app/certificate/generate_certificate.html", context=diction)

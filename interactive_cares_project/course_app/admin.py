@@ -15,4 +15,5 @@ admin.site.register(models.Lesson)
 admin.site.register(models.Quiz)
 admin.site.register(models.Question)
 admin.site.register(models.Enrollment, EnrollmentAdmin)
+admin.site.register(models.Certificate)
 

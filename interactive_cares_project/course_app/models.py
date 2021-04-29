@@ -5,6 +5,10 @@ from auth_app.models import Instructor, Student
 def thumbnail_upload(instance, filename):
     return f"course_app/course_thumbnails/{instance.title}/{filename}"
 
+# To keep each logo picture in a different folder
+def logo_upload(instance, filename):
+    return f"course_app/logo/{filename}"
+
 # Create your models here. 
 
 class Category(models.Model):
@@ -126,3 +130,9 @@ class Enrollment(models.Model):
     
     def __str__(self):
         return f"Student: {self.student.user.email}, Course: {self.course.title}, Enrollment Status: {self.enrollment_status}"
+
+class Certificate(models.Model):
+    logo = models.ImageField(upload_to=logo_upload, blank=True, null=True)
+    
+    def __str__(self):
+        return f'{self.pk}'

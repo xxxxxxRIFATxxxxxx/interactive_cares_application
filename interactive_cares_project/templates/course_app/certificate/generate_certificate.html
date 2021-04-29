@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block body_block %}
+<section class="container my-5">
+  <div class="shadow-lg p-5 bg-body rounded row about-us-contaiiner">
+    <h2 class="h-text text-center mb-5">Certificate Generator</h2>
+    <div class="row professional-instructors">
+      <input id="name" type='text' placeholder="Name" class="form-control mb-3" value="{{student.user.full_name}}">
+      <input id="course" type='text' placeholder="Course" class="form-control mb-3" value="{{enrollment.course}}">
+      <a href="#" class="btn btn-success mb-3" id="download-btn">Download</a>
+      <canvas id="canvas" height="2550px" width="3300px"></canvas>
+    </div>
+  </div>
+
+  {% if certificate.logo %}
+  <img src="/media/{{ certificate.logo }}" alt="logo" id="logo" style="visibility: hidden;" />
+  {% endif %}
+
+</section>
+{% endblock %}

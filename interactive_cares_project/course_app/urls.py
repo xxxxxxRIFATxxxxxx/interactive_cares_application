@@ -37,4 +37,5 @@ urlpatterns = [
     path("category_list/", views.category_list, name="category_list"),
     path("create_course_for_admin/", views.create_course_for_admin, name="create_course_for_admin"),
     path("edit_course_for_admin/<pk>/", views.edit_course_for_admin, name="edit_course_for_admin"),
+    path("generate_certificate_for_admin/", views.generate_certificate_for_admin, name="generate_certificate_for_admin"),
 ]
