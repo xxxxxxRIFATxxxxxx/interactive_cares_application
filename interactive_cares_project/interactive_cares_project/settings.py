@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'auth_app',
     'course_app',
+    'api_app',
+    'rest_framework',
 ]
 
 # For crispy forms
