@@ -2,14 +2,19 @@ from django.db import models
 from auth_app.models import Instructor, Student
 
 # To keep each course thumbnail in a different folder
+
+
 def thumbnail_upload(instance, filename):
     return f"course_app/course_thumbnails/{instance.title}/{filename}"
 
 # To keep each logo picture in a different folder
+
+
 def logo_upload(instance, filename):
     return f"course_app/logo/{filename}"
 
-# Create your models here. 
+# Create your models here.
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -19,6 +24,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Course(models.Model):
     # Instructor info
@@ -42,16 +48,19 @@ class Course(models.Model):
         ('Expert', 'Expert'),
     )
 
-    difficulty_level = models.CharField(max_length=255, choices=difficulty_level_choices, default="All Levels")
-    
+    difficulty_level = models.CharField(
+        max_length=255, choices=difficulty_level_choices, default="All Levels")
+
     course_type_choices = (
         ('Paid', 'Paid'),
         ('Free', 'Free'),
     )
 
-    course_type = models.CharField(max_length=255, choices=course_type_choices, default="Paid")
+    course_type = models.CharField(
+        max_length=255, choices=course_type_choices, default="Paid")
 
-    total_course_duration = models.CharField(max_length=255, default="00:00:00")
+    total_course_duration = models.CharField(
+        max_length=255, default="00:00:00")
     price = models.FloatField(blank=True, null=True)
     discounted_price = models.FloatField(blank=True, null=True)
 
@@ -68,12 +77,15 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
 class Module(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     module_name = models.CharField(max_length=255)
+    completed_student_id = models.JSONField(default={})
 
     def __str__(self):
         return f"Module name: {self.module_name}, Course: {self.course.title}"
+
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -86,10 +98,12 @@ class Lesson(models.Model):
         ('Public', 'Public'),
     )
 
-    privacy_type = models.CharField(max_length=255, choices=privacy_type_choices, default="Private")
-    
+    privacy_type = models.CharField(
+        max_length=255, choices=privacy_type_choices, default="Private")
+
     def __str__(self):
         return f"Lesson name: {self.lesson_name}, Module: {self.module.module_name}, Course: {self.course.title}"
+
 
 class Quiz(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -101,6 +115,7 @@ class Quiz(models.Model):
 
     def __str__(self):
         return f"Quiz name: {self.quiz_name}, Module: {self.module.module_name}, Course: {self.course.title}"
+
 
 class Question(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
@@ -116,6 +131,7 @@ class Question(models.Model):
     def __str__(self):
         return f"Question: {self.question} Quiz name: {self.quiz.quiz_name}, Module: {self.module.module_name}, Course: {self.course.title}"
 
+
 class Enrollment(models.Model):
     date_and_time = models.DateTimeField(auto_now_add=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -126,13 +142,15 @@ class Enrollment(models.Model):
         ('Pending', 'Pending'),
     )
 
-    enrollment_status = models.CharField(max_length=255, choices=enrollment_status_choices)
-    
+    enrollment_status = models.CharField(
+        max_length=255, choices=enrollment_status_choices)
+
     def __str__(self):
         return f"Student: {self.student.user.email}, Course: {self.course.title}, Enrollment Status: {self.enrollment_status}"
 
+
 class Certificate(models.Model):
     logo = models.ImageField(upload_to=logo_upload, blank=True, null=True)
-    
+
     def __str__(self):
         return f'{self.pk}'
